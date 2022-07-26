@@ -1,0 +1,36 @@
+[
+    {
+        "title": "why we use <br> element",
+        "answer_1": "to make text bold",
+        "answer_2": "to make text italic",
+        "answer_3": "to add breakline",
+        "answer_4": "to create horizontal line",
+        "right_answer": "to add breakline"
+    },
+    {
+        "title" : "is <img> element has attribute href",
+        "answer_1" : "yes",
+        "answer_2" : "no its for anchor tag <a>",
+        "answer_3" : "all elemnts has this attribute",
+        "answer_4" : "answer 1 and 3 is right",
+        "right_answer" : "no its for anchor tag <a>"
+    },
+    {
+        "title" : "how c&an we make elemnt text bold",
+        "answer_1" : "putting it inside <b> tag",
+        "answer_2" : "putting it inside <strong> tag",
+        "answer_3" : "customizing it with font-weight property in css",
+        "answer_4" : "all answers is right",
+        "right_answer" : "all answers is right"
+    },
+
+    {
+        "title": "why we use <img> element",
+        "answer_1": "to add images",
+        "answer_2": "to to add png images",
+        "answer_3": "to add video",
+        "answer_4": "to create tag that has images in it",
+        "right_answer": "to create tag that has images in it"
+    }
+    
+    ]
