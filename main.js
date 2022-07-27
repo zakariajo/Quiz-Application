@@ -1,9 +1,10 @@
 let countspan = document.querySelector(".quiz-info .count span");
 let bulletsSpanContainer = document.querySelector(".bullets .spans");
-let currentIndex = 0;
 let quizArea = document.querySelector(".quiz-area");
 let answersArea = document.querySelector(".answers-area");
 let submitButton = document.querySelector(".submit-button");
+let currentIndex = 0;
+let right_answer =0;
 
 function getQuestions(){
 
@@ -13,7 +14,7 @@ function getQuestions(){
         if(this.readyState === 4 && this.status === 200){
             let questionObject = JSON.parse(this.responseText)
             let qCount = questionObject.length;
-            console.log(qCount);
+            // console.log(qCount);
 
             createBullets(qCount);
 
@@ -24,11 +25,22 @@ function getQuestions(){
 
                 // get he right answer 
                 let theRightAnswer = questionObject[currentIndex].right_answer;
-                console.log(theRightAnswer);
+                // console.log(theRightAnswer);
                 // increase index 
                 currentIndex++;
                 //check the answer 
                 checkAnswer(theRightAnswer, qCount);
+
+                // remove previous question
+                quizArea.innerHTML = "";
+                answersArea.innerHTML ="";
+
+                // add next question 
+                addQuestionData(questionObject[currentIndex], qCount);
+
+                // handle bullets class
+                handleBullets();
+
             };
 
         }
@@ -81,7 +93,7 @@ function addQuestionData(obj, count){
         radioinput.name = 'question';
         radioinput.type = 'radio';
         radioinput.id = `answer_${i}`;
-        radioinput.dataset.asnwer = obj[`answer_${i}`];
+        radioinput.dataset.answer = obj[`answer_${i}`];
 
         // make first option selected 
 
@@ -114,4 +126,39 @@ function addQuestionData(obj, count){
 
     }
 
+}
+
+
+function checkAnswer(rAnswer, count) {
+    let answers = document.getElementsByName("question");
+    let thechoosenAnswer;
+
+    for (let i = 0 ; i < answers.length; i++){
+        if (answers[i].checked){
+            thechoosenAnswer = answers[i].dataset.answer;
+            
+        }
+    }
+
+    console.log(`the right answer is: ${rAnswer}`);
+    console.log(`the choosen answer is: ${thechoosenAnswer}`);
+
+    if ( rAnswer === thechoosenAnswer){
+        right_answer++;
+        console.log("good answer");
+    } else {
+        console.log("not good answer");
+    }
+}
+
+function handleBullets(){
+    let bulletsSpans = document.querySelectorAll(".bullets .spans span");
+    let arrayOfSpans = Array.from(bulletsSpans);
+    arrayOfSpans.forEach((span, index) => {
+
+        if (currentIndex === index){
+            span.className = 'on';
+        }
+
+    })
 }
