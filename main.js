@@ -1,10 +1,13 @@
 let countspan = document.querySelector(".quiz-info .count span");
+let bullets = document.querySelector(".bullets");
 let bulletsSpanContainer = document.querySelector(".bullets .spans");
 let quizArea = document.querySelector(".quiz-area");
 let answersArea = document.querySelector(".answers-area");
 let submitButton = document.querySelector(".submit-button");
+//set options
 let currentIndex = 0;
 let right_answer =0;
+
 
 function getQuestions(){
 
@@ -41,6 +44,10 @@ function getQuestions(){
                 // handle bullets class
                 handleBullets();
 
+                // show results 
+
+                showResults(qCount);
+
             };
 
         }
@@ -63,8 +70,14 @@ function createBullets(num){
     }
 }
 
+
+//
+
 function addQuestionData(obj, count){
-    // create h2 qst 
+    
+    if (currentIndex < count){
+
+        // create h2 qst 
     let questionTitle = document.createElement("h2");
     
     //create qst text 
@@ -125,6 +138,7 @@ function addQuestionData(obj, count){
         answersArea.appendChild(mainDiv);
 
     }
+    }
 
 }
 
@@ -161,4 +175,15 @@ function handleBullets(){
         }
 
     })
+}
+
+function showResults(count) {
+    let theResults;
+    if (currentIndex === count){
+        quizArea.remove();
+        answersArea.remove();
+        submitButton.remove();
+        bullets.remove();
+
+    }
 }
