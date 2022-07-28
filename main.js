@@ -4,6 +4,7 @@ let bulletsSpanContainer = document.querySelector(".bullets .spans");
 let quizArea = document.querySelector(".quiz-area");
 let answersArea = document.querySelector(".answers-area");
 let submitButton = document.querySelector(".submit-button");
+let resultsContainer = document.querySelector(".results");
 //set options
 let currentIndex = 0;
 let right_answer =0;
@@ -184,6 +185,17 @@ function showResults(count) {
         answersArea.remove();
         submitButton.remove();
         bullets.remove();
+        
+        if (right_answer > (count /2) && rightAnswers < count){
+            theResults = `<span class="good">good</span>, ${right_answer} from ${count} is good`;
 
+        } else if (right_answer === count){
+            theResults = `<span class="perfect">perfect</span>, all answers is good`;
+        }else {
+            theResults = `<span class="bad">bad</span>, ${right_answer} from ${count} is good`;
+        }
+
+        resultsContainer.innerHTML = theResults;
     }
+
 }
