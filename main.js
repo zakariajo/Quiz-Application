@@ -28,7 +28,7 @@ function getQuestions(){
 
             //countdown start 
 
-            countDown(5,qCount);
+            countDown(10,qCount);
             // click on submit 
             submitButton.onclick = () => {
 
@@ -53,7 +53,7 @@ function getQuestions(){
 
                 // countdown restart 
                 clearInterval(countdownintervale);
-                countDown(5,qCount);
+                countDown(10,qCount);
                 // show results 
 
                 showResults(qCount);
@@ -199,7 +199,7 @@ function showResults(count) {
             theResults = `<span class="good">good</span>, ${right_answer} from ${count} is good`;
 
         } else if (right_answer === count){
-            theResults = `<span class="perfect">perfect</span>, ${right_answer} all answers is good`;
+            theResults = `<span class="perfect">perfect</span>, all answers is good`;
         }else {
             theResults = `<span class="bad">bad</span>, ${right_answer} from ${count} is good`;
         }
