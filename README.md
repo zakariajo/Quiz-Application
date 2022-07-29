@@ -1,3 +1,7 @@
-A quiz simple application for testing my squills using html css nad js , json ana ajax been used as well
-this application was created using html 5 and its dynamicly updated same as json file
-you can add multipl qstions in json file , and its dynamicly update the html 5 
+A quiz simple application for testing my skills to implemnt html,css, js , json ana ajax 
+-html file is dynamicly updated using javascript 
+-css style implementation is simple and can be improved 
+-javascript file has the functions and backbone for this exercice 
+-json file has the data for the qeustions , this can be dited to add or update or remove questions from it 
+-ajax are for client server cominication 
+-This application can be improved in the future using typescript and sass 
