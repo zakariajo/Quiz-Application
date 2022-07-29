@@ -5,9 +5,11 @@ let quizArea = document.querySelector(".quiz-area");
 let answersArea = document.querySelector(".answers-area");
 let submitButton = document.querySelector(".submit-button");
 let resultsContainer = document.querySelector(".results");
+let countdownElement = document.querySelector(".countdown");
 //set options
 let currentIndex = 0;
 let right_answer =0;
+let countdownintervale;
 
 
 function getQuestions(){
@@ -24,6 +26,9 @@ function getQuestions(){
 
             addQuestionData(questionObject[currentIndex], qCount);
 
+            //countdown start 
+
+            countDown(5,qCount);
             // click on submit 
             submitButton.onclick = () => {
 
@@ -45,6 +50,10 @@ function getQuestions(){
                 // handle bullets class
                 handleBullets();
 
+
+                // countdown restart 
+                clearInterval(countdownintervale);
+                countDown(5,qCount);
                 // show results 
 
                 showResults(qCount);
@@ -186,16 +195,39 @@ function showResults(count) {
         submitButton.remove();
         bullets.remove();
         
-        if (right_answer > (count /2) && rightAnswers < count){
+        if (right_answer > (count /2) && right_answer < count){
             theResults = `<span class="good">good</span>, ${right_answer} from ${count} is good`;
 
         } else if (right_answer === count){
-            theResults = `<span class="perfect">perfect</span>, all answers is good`;
+            theResults = `<span class="perfect">perfect</span>, ${right_answer} all answers is good`;
         }else {
             theResults = `<span class="bad">bad</span>, ${right_answer} from ${count} is good`;
         }
 
         resultsContainer.innerHTML = theResults;
+        resultsContainer.style.padding = '10px';
+        resultsContainer.style.backgrondColor = 'white';
+        resultsContainer.style.marginTop = '10px';
     }
 
+}
+
+function countDown(duration, count){
+    if (currentIndex < count){
+        let minutes, secondes;
+        countdownintervale = setInterval(function(){
+            minutes = parseInt(duration / 60);
+            secondes = parseInt(duration % 60);
+
+            minutes = minutes < 10 ? `0${minutes} `: minutes;
+            secondes = secondes < 10 ? `0${secondes} `: secondes;
+            
+            countdownElement.innerHTML = `${minutes}:${secondes}`;
+            if (--duration <0){
+                clearInterval(countdownintervale);
+                submitButton.click();
+                console.log("finished")
+            }
+        }, 1000);
+    }
 }
